@@ -13,7 +13,7 @@ const SearchResult = (props: Props) => {
   const searchTerm = searchParams.get("search_query");
   const SEARCH_VIDEO_QUERY = gql`
     query getVideoById($query: String!) {
-      videos(where: { _search: $query, orderBy: createdAt_DESC }) {
+      videos(where: { _search: $query }) {
         id
         title
         thumbnail {

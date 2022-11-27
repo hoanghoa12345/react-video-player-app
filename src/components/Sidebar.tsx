@@ -1,6 +1,6 @@
+import React from "react";
 import { Stack } from "@mui/material";
 import { blue, red } from "@mui/material/colors";
-import React from "react";
 import { Category } from "../utils/types";
 import { Loader } from "./index";
 
@@ -45,9 +45,7 @@ const Sidebar = ({
                   category.id === selectedCategory.id ? "white" : blue[600],
                 marginRight: "15px",
               }}
-            >
-              {/* {category.icon} */}
-            </span>
+            ></span>
             <span
               style={{
                 color: category.id === selectedCategory.id ? "white" : "black",

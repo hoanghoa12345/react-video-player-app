@@ -1,5 +1,5 @@
-import { IconButton, Paper } from "@mui/material";
-import { red, grey } from "@mui/material/colors";
+import { IconButton, Paper, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import React, { FormEvent, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ type Props = {
 };
 
 const SearchBar = ({ display }: Props) => {
+  const theme = useTheme();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const navigate = useNavigate();
 
@@ -39,7 +40,11 @@ const SearchBar = ({ display }: Props) => {
         placeholder="Nhập nội dung tìm kiếm"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ maxWidth: "100%", backgroundColor: "transparent" }}
+        style={{
+          maxWidth: "100%",
+          backgroundColor: "transparent",
+          color: theme.palette.mode === "dark" ? grey[100] : grey[600],
+        }}
       />
       <IconButton
         type="submit"

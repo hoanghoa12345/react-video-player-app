@@ -1,10 +1,12 @@
-import { IconButton, Menu, MenuItem, Stack, Popover } from "@mui/material";
+import { IconButton, Menu, MenuItem, Stack, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { SettingsOutlined, SearchOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useColorModeContext } from "../hooks/useTheme";
 type Props = {};
 
 const UserNav = (props: Props) => {
+  const colorMode = useColorModeContext();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -17,6 +19,7 @@ const UserNav = (props: Props) => {
   const handleOpenSearchBar = (event: React.MouseEvent<HTMLButtonElement>) => {
     navigate("/search");
   };
+  const theme = useTheme();
   return (
     <Stack direction="row" alignItems="center" p={2}>
       <div
@@ -41,7 +44,9 @@ const UserNav = (props: Props) => {
           open={open}
           onClose={handleClose}
         >
-          <MenuItem>Giao diện tối</MenuItem>
+          <MenuItem onClick={colorMode.toggleColorMode}>
+            Giao diện: {theme.palette.mode === "light" ? "Sáng" : "Tối"}
+          </MenuItem>
         </Menu>
       </div>
     </Stack>

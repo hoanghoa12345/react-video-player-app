@@ -61,7 +61,7 @@ const Feed = (props: Props) => {
   return (
     <Stack flexDirection={{ sx: "column", md: "row" }}>
       <Box
-        height={{ sx: "auto", md: "92vh" }}
+        height={{ sx: "auto", md: "90vh" }}
         borderRight={"2px solid" + grey[300]}
         px={{ sx: 0, md: 2 }}
       >
@@ -73,7 +73,7 @@ const Feed = (props: Props) => {
           setSelectedCategory={setSelectedCategory}
         />
         <Typography className="copyright" variant="body2" mt={1.5}>
-          Copyright &copy; 2022 MyClip
+          Copyright &copy; 2022 RemiPlayer
         </Typography>
       </Box>
 
