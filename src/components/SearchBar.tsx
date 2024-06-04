@@ -37,13 +37,14 @@ const SearchBar = ({ display }: Props) => {
     >
       <input
         className="search-bar"
-        placeholder="Nhập nội dung tìm kiếm"
+        placeholder="Enter keywords"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{
           maxWidth: "100%",
           backgroundColor: "transparent",
           color: theme.palette.mode === "dark" ? grey[100] : grey[600],
+          fontFamily: "inherit"
         }}
       />
       <IconButton

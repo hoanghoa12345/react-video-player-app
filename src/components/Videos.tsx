@@ -14,8 +14,9 @@ type Props = {
 const Videos = ({ loading, error, videos, direction }: Props) => {
   if (loading) return <Loader />;
   if (error) return <span style={{ color: red[600] }}>{error}</span>;
+  if (!videos) return <span style={{ color: red[600] }}>Video not found</span>;
   if (videos.length === 0)
-    return <span style={{ color: red[600] }}>Không tìm thấy video</span>;
+    return <span style={{ color: red[600] }}>Video not found</span>;
   return (
     <Stack
       direction={direction || "row"}

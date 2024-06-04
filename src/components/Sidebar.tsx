@@ -8,7 +8,7 @@ type Props = {
   loading: Boolean;
   error?: string;
   categories: Category[];
-  selectedCategory: Category;
+  selectedCategory: Category | null;
   setSelectedCategory: Function;
 };
 
@@ -34,7 +34,7 @@ const Sidebar = ({
             onClick={() => setSelectedCategory(category)}
             style={{
               backgroundColor:
-                category.id === selectedCategory.id ? blue[500] : "white",
+                category.id === selectedCategory?.id ? blue[500] : "white",
             }}
             key={category.id}
             aria-label={category.id}
@@ -42,14 +42,14 @@ const Sidebar = ({
             <span
               style={{
                 color:
-                  category.id === selectedCategory.id ? "white" : blue[600],
+                  category.id === selectedCategory?.id ? "white" : blue[600],
                 marginRight: "15px",
               }}
             ></span>
             <span
               style={{
-                color: category.id === selectedCategory.id ? "white" : "black",
-                opacity: category.id === selectedCategory.id ? "1" : "0.8",
+                color: category.id === selectedCategory?.id ? "white" : "black",
+                opacity: category.id === selectedCategory?.id ? "1" : "0.8",
               }}
             >
               {category.name}

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 export const useColorModeContext = () => useContext(ColorModeContext);
 type ColorModeProviderProps = {
@@ -9,7 +9,8 @@ type ColorModeProviderProps = {
 };
 
 export const ColorModeProvider = ({ children }: ColorModeProviderProps) => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const [mode, setMode] = useState<"light" | "dark">(systemTheme.matches ? "dark" : "light");
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
@@ -23,7 +24,7 @@ export const ColorModeProvider = ({ children }: ColorModeProviderProps) => {
     () =>
       createTheme({
         typography: {
-          fontFamily: "Roboto",
+          fontFamily: "Roboto, sans-serif",
         },
         palette: {
           mode: mode,

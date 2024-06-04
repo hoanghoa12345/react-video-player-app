@@ -75,14 +75,12 @@ const VideoDetail = (props: Props) => {
                   py={1}
                   px={2}
                 >
-                  <Link to="/channel/test">
-                    <Typography variant="h6">
-                      {videoData?.video.channelName}
-                      <CheckCircleIcon
-                        sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
-                      />
-                    </Typography>
-                  </Link>
+                  <Typography variant="h6">
+                    {videoData?.video.channelName}
+                    <CheckCircleIcon
+                      sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                    />
+                  </Typography>
                   <Stack direction="row" gap="20px" alignItems="center">
                     <Typography variant="body1" sx={{ opacity: 0.7 }}>
                       {parseInt(videoData?.video.viewCount).toLocaleString()}{" "}

@@ -45,7 +45,7 @@ const UserNav = (props: Props) => {
           onClose={handleClose}
         >
           <MenuItem onClick={colorMode.toggleColorMode}>
-            Giao diện: {theme.palette.mode === "light" ? "Sáng" : "Tối"}
+            Theme: {theme.palette.mode === "light" ? "Light" : "Dark"}
           </MenuItem>
         </Menu>
       </div>

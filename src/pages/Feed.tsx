@@ -1,18 +1,14 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar, Videos } from "../components/index";
 import { grey } from "@mui/material/colors";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useLazyQuery } from "@apollo/client";
 import { Category } from "../utils/types";
 
 type Props = {};
 const Feed = (props: Props) => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>({
-    id: "claxffms62yhp0b16r3jefm3j",
-    name: "Lofi Music",
-    updatedAt: "2022-11-26T04:27:29.930307+00:00",
-  });
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
   const GET_CATEGORIES = gql`
     query Categories {
@@ -50,13 +46,22 @@ const Feed = (props: Props) => {
     error: cError,
     data: dataCategories,
   } = useQuery(GET_CATEGORIES);
-  const {
+
+  const [getVideos, {
     loading: cyLoading,
     error: cyError,
     data: dataCategory,
-  } = useQuery(GET_CATEGORY_BY_ID, {
-    variables: { id: selectedCategory.id },
-  });
+  }] = useLazyQuery(GET_CATEGORY_BY_ID);
+
+  useEffect(() => {
+    const defaultCategory = dataCategories?.categories?.[0];
+    const categoryId = selectedCategory?.id || defaultCategory?.id;
+
+    if (defaultCategory) {
+      setSelectedCategory(selectedCategory || defaultCategory);
+      getVideos({ variables: { id: categoryId } });
+    }
+  }, [selectedCategory, dataCategories, getVideos]);
 
   return (
     <Stack flexDirection={{ sx: "column", md: "row" }}>
@@ -79,7 +84,7 @@ const Feed = (props: Props) => {
 
       <Box p={2} sx={{ overflowY: "auto" }} height="90vh" flex={2}>
         <Typography variant="h4" fontWeight="bold" mb={2}>
-          {selectedCategory.name}{" "}
+          {selectedCategory?.name}{" "}
           <span style={{ color: blue[500] }}>videos</span>
         </Typography>
 
