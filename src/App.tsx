@@ -16,6 +16,7 @@ function App() {
       <ColorModeProvider>
         <BrowserRouter>
           <Box>
+            <span className="shadow-effect" />
             <Navbar />
             <Routes>
               <Route index path="/" element={<Feed />} />
